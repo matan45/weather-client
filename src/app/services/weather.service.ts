@@ -10,7 +10,7 @@ import { CoronaVirusModel } from './coronavirusmodel';
 })
 export class WeatherService {
 
-  private readonly coronaUrl = "https://matan-weatherapp-server.herokuapp.com/";
+  private readonly coronaUrl = "https://matan-weatherapp-server.herokuapp.com/api";
 
   constructor(private httpClient: HttpClient) {}
 

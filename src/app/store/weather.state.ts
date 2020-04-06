@@ -119,6 +119,12 @@ export class LocationState {
             error: "Cant fined the city"
           });
         }
+      },error=>{
+        patchState({
+          country: state.country,
+          name: payload,
+          error: "500 Max max request is reached need to wait 24h for it to reset"
+        });
       });
     } else {
       patchState({
