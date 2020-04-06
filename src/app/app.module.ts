@@ -4,8 +4,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from '@angular/router';
 
 import { NgxsModule } from "@ngxs/store";
-import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
-import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 import { AppComponent } from "./app.component";
 import { WeatherlistComponent } from "./components/weatherlist/weatherlist.component";
@@ -39,8 +37,6 @@ const routes: Routes = [
     ]),
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
-    NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
     NoopAnimationsModule
   ],
   providers: [],
