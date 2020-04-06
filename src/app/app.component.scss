@@ -1,0 +1,19 @@
+
+
+.sun-color{
+    color: yellow;
+}
+
+.app-color{
+    color:red;
+}
+
+.weather-color{
+    color: yellowgreen;
+}
+
+@media only screen and(max-width: 600px) {
+    .space {
+      padding-top: 0.5rem;
+    }
+  }

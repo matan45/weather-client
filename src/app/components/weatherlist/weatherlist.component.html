@@ -1,0 +1,64 @@
+<div *ngIf="cityforecasts && (error|async).length === 0">
+    <div class="container card py-3">
+        <h2>City: {{cityName | async}}</h2>
+        <h4 class="p-2 ml-2">Country: {{countryName | async}}</h4>
+        <h6 class="lead">Headline: {{(cityforecasts|async).Headline.Text}}</h6>
+        <mat-slide-toggle (change)="this.temperature = !this.temperature">
+        <span *ngIf="!temperature">Fahrenheit</span>
+        <span *ngIf="temperature">Celsius</span>
+        </mat-slide-toggle>
+
+        <div class="show">
+            <div *ngFor="let temp of (cityforecasts|async).DailyForecasts;">
+                <div class="card ml-2">
+                    <div class="card-header">{{temp.Date}}</div>
+                    <div class="card-body">
+                        <div class="card-header bg-dark text-white">{{temp.DayofWeek}}</div>
+                        <h5 class="card-text py-2"><i class="fas fa-thermometer-half temp"></i> Temperature </h5>
+                        <div class="container">
+                            <div *ngIf="temperature">
+                                <label class="card-text lead">Fahrenheit: </label>
+                                <div class="row ml-2">
+                                    <div class="col">
+                                        <p class="colud">{{temp.Temperature.Minimum.Value | temperatureConverter : 'F'}}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="hot">{{temp.Temperature.Maximum.Value | temperatureConverter : 'F'}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="!temperature">
+                                <label class="card-text lead">Celsius: </label>
+                                <div class="row ml-2">
+                                    <div class="col">
+                                        <p class="colud">{{temp.Temperature.Minimum.Value.toFixed(0)}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="hot">{{temp.Temperature.Maximum.Value.toFixed(0)}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <img src="https://developer.accuweather.com/sites/default/files/{{temp.Night.Icon}}-s.png" height="40" width="55">
+                                </div>
+                                <div class="col">
+                                    <img src="https://developer.accuweather.com/sites/default/files/{{temp.Day.Icon}}-s.png" height="40" width="55">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="(error|async).length > 0" class="container">
+    <p class="btn btn-danger">{{error | async}}</p>
+</div>

@@ -1,0 +1,28 @@
+<!-- NAVBAR WITH FORM -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+    <div class="container">
+        <a routerLink="" routerLinkActive="active-link" class="navbar-brand"><i class="fas fa-sun fa-spin mr-1 sun-color"></i><span
+                class="weather-color">Weather</span><span class="app-color">App</span></a>
+        <button type="button" class="navbar-toggler navbar-toggler-icon" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapsenav">
+        </button>
+        <div class="collapse navbar-collapse " id="collapsenav" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav form-inline mr-auto">
+                <li>
+                    <input #myInput type="text" class="form-control mr-2" placeholder="City Search">
+                </li>
+                <li class="space">
+                    <button class="btn btn-outline-primary" (click)="doSearch(myInput.value)"><i
+                            class="fas fa-search-location"></i></button>
+                </li>
+                <li class="ml-2 space">
+                    <a routerLink="/coronavirus" class="text-white" routerLinkActive="active-link">Corona Virus</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,48 @@
+
+.card{
+    background-color: #FFFCF5;
+}
+
+.show {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.colud {
+  color: blue;
+}
+
+.hot {
+  color: red;
+}
+
+h2 {
+  color: #859450;
+  font-family: "Trocchi", serif;
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 48px;
+  margin: 0;
+}
+
+h4 {
+  color: #ff9900;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+
+.temp{
+    color: #c75310;
+}
+
+@media only screen and(max-width: 600px) {
+  .show {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
