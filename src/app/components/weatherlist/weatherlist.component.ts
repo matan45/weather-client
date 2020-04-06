@@ -17,9 +17,11 @@ export class WeatherlistComponent implements OnInit {
   >;
   @Select(LocationState.getError) error: Observable<string>;
   public temperature: boolean = false;
+  @Select(LocationState.getspinner) spinner:Observable<boolean>;
 
   constructor() {}
 
   ngOnInit(): void {
+    
   }
 }

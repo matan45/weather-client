@@ -2,6 +2,9 @@
     <h1 class="display-4">CoronaVirus Tracker</h1>
     <p class="lead">This application lists the current number of cases reported
         across the globe</p>
+    <div *ngIf="(spinner|async)">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+    </div>
     <hr class="my-4">
     <p>As of the date: {{(coronadata | async).Date.substring(0, 10).split("-").reverse().join("-")}}</p>
     <p class="lead">Total Death: <span class="bg-danger">{{(coronadata | async).totalDeath}}</span></p>
@@ -11,8 +14,8 @@
 </div>
 
 <div class="container mb-3">
-    <p class="lead">Filter the search by the country name: <input type="text"
-            [(ngModel)]="filtername" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"></p>
+    <p class="lead">Filter the search by the country name: <input type="text" [(ngModel)]="filtername"
+            placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"></p>
 </div>
 
 <div>

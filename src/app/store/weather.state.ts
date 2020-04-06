@@ -4,7 +4,6 @@ import { WeatherService } from "../services/weather.service";
 import { Injectable } from "@angular/core";
 import { DaysForecasts } from "../services/DailyForecasts";
 import { CoronaVirusModel } from '../services/coronavirusmodel';
-import { state } from '@angular/animations';
 
 export class LocationStateModel {
   name: string;
@@ -12,16 +11,18 @@ export class LocationStateModel {
   daysforecasts: DaysForecasts;
   error: string;
   coronadata: CoronaVirusModel;
+  spinner:boolean;
 }
 
 @State<LocationStateModel>({
   name: "location",
   defaults: {
-    name: "tel aviv",
+    name: "not ready",
     country: "Israel",
     daysforecasts: new DaysForecasts(),
     error: "",
-    coronadata: new CoronaVirusModel()
+    coronadata: new CoronaVirusModel(),
+    spinner:false
   }
 })
 @Injectable({
@@ -34,6 +35,11 @@ export class LocationState {
   @Selector()
   static getLocationName(state: LocationStateModel) {
     return state.name;
+  }
+
+  @Selector()
+  static getspinner(state: LocationStateModel) {
+    return state.spinner;
   }
 
   @Selector()
@@ -97,6 +103,9 @@ export class LocationState {
     { getState, patchState }: StateContext<LocationStateModel>,
     { payload }: CityWeather
   ) {
+    patchState({
+      spinner:true
+    });
     const state = getState();
     if (payload.length > 0) {
 
@@ -109,28 +118,32 @@ export class LocationState {
           this.weatherservice.getCityWeather5days(res[0].Key).subscribe(data => {
               patchState({
                 daysforecasts: data,
-                error: ""
+                error: "",
+                spinner:false
               });
             });
         } else {
           patchState({
             country: state.country,
             name: payload,
-            error: "Cant fined the city"
+            error: "Cant fined the city",
+            spinner:false
           });
         }
       },error=>{
         patchState({
           country: state.country,
           name: payload,
-          error: "500 Max max request is reached need to wait 24h for it to reset"
+          error: "500 Max max request is reached need to wait 24h for it to reset",
+          spinner:false
         });
       });
     } else {
       patchState({
         name: state.name,
         country: state.country,
-        error: "Empty Search"
+        error: "Empty Search",
+        spinner:false
       });
     }
   }
@@ -138,9 +151,13 @@ export class LocationState {
   @Action(CoronaData)
   getcoronadata({ getState, patchState }: StateContext<LocationStateModel>) {
     const state = getState();
+    patchState({
+      spinner:true
+    });
     this.weatherservice.getCoronaVirusData().subscribe(data => {
       patchState({
-        coronadata: data
+        coronadata: data,
+        spinner:false
       });
     });
   }

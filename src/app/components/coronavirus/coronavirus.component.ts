@@ -12,6 +12,7 @@ import { CoronaData } from 'src/app/store/weather.actions';
 })
 export class CoronavirusComponent implements OnInit {
   @Select(LocationState.getcoronadata) coronadata: Observable<CoronaVirusModel>;
+  @Select(LocationState.getspinner) spinner:Observable<boolean>;
 
   country: CountryData[] = [];
 

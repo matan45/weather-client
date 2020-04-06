@@ -16,6 +16,7 @@ import { TemperatureConverterPipe } from './services/temperature-converter.pipe'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 import { CoronavirusComponent } from './components/coronavirus/coronavirus.component';
 import { FormsModule } from '@angular/forms';
 import { FillterPipe } from './services/fillter.pipe';

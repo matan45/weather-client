@@ -1,5 +1,9 @@
+
 <div *ngIf="cityforecasts && (error|async).length === 0">
     <div class="container card py-3">
+        <div *ngIf="(spinner|async)">
+            <i class="fas fa-spinner fa-spin fa-3x"></i>
+        </div>
         <h2>City: {{cityName | async}}</h2>
         <h4 class="p-2 ml-2">Country: {{countryName | async}}</h4>
         <h6 class="lead">Headline: {{(cityforecasts|async).Headline.Text}}</h6>
