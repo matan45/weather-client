@@ -17,8 +17,8 @@ export class LocationStateModel {
 @State<LocationStateModel>({
   name: "location",
   defaults: {
-    name: "not ready",
-    country: "Israel",
+    name: "lodaing..",
+    country: "lodaing..",
     daysforecasts: new DaysForecasts(),
     error: "",
     coronadata: new CoronaVirusModel(),
@@ -104,6 +104,8 @@ export class LocationState {
     { payload }: CityWeather
   ) {
     patchState({
+      name: "lodaing..",
+      country: "lodaing..",
       spinner:true
     });
     const state = getState();
